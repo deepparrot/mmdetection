@@ -302,22 +302,22 @@ def evaluate_model(model_name, paper_arxiv_id, weights_url, weights_name, paper_
         from mmdet.core import results2json
 
     rank, _ = get_dist_info()
-    if args.out and rank == 0:
-        print('\nwriting results to {}'.format(args.out))
-        mmcv.dump(outputs, args.out)
-        eval_types = args.eval
+    if out and rank == 0:
+        print('\nwriting results to {}'.format(out))
+        mmcv.dump(outputs, out)
+        eval_types = ['bbox']
         if eval_types:
             print('Starting evaluate {}'.format(' and '.join(eval_types)))
             if eval_types == ['proposal_fast']:
-                result_file = args.out
+                result_file = out
             else:
                 if not isinstance(outputs[0], dict):
-                    result_files = results2json(dataset, outputs, args.out)
+                    result_files = results2json(dataset, outputs, out)
                 else:
                     for name in outputs[0]:
                         print('\nEvaluating {}'.format(name))
                         outputs_ = [out[name] for out in outputs]
-                        result_file = args.out + '.{}'.format(name)
+                        result_file = out + '.{}'.format(name)
                         result_files = results2json(dataset, outputs_,
                                                     result_file)
     anns = json.load(open(result_files['bbox']))
