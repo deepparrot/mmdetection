@@ -339,7 +339,7 @@ model_configs.append(
 )
 
 model_configs.append(
-    {'model_name': 'SSD512)', 
+    {'model_name': 'SSD512', 
      'paper_arxiv_id': '1512.02325',
      'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/ssd512_coco_vgg16_caffe_120e_20181221-d48b0be8.pth',
      'weights_name': 'ssd512_coco_vgg16_caffe_120e_20181221-d48b0be8.pth',
@@ -401,6 +401,80 @@ model_configs.append(
      'weights_name': 'htc_dconv_c3-c5_mstrain_400_1400_x101_64x4d_fpn_20e_20190408-0e50669c.pth',
      'config': './configs/htc/htc_dconv_c3-c5_mstrain_400_1400_x101_64x4d_fpn_20e.py',
     'paper_results': None}
+)
+
+## Cascade Mask R-CNN
+
+model_configs.append(
+    {'model_name': 'Cascade Mask R-CNN (ResNet-50-FPN, 1x LR)', 
+     'paper_arxiv_id': '1906.09756',
+     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/cascade_mask_rcnn_r50_fpn_1x_20181123-88b170c9.pth',
+     'weights_name': 'cascade_mask_rcnn_r50_fpn_1x_20181123-88b170c9.pth',
+     'config': './configs/cascade_mask_rcnn_r50_fpn_1x.py',
+    'paper_results': {'box AP': 0.413, 'AP50': 0.594, 'AP75': 0.453, 'APS': 0.232, 'APM': 0.438, 'APL': 0.558}}
+)
+
+model_configs.append(
+    {'model_name': 'Cascade Mask R-CNN (ResNet-50-FPN, 20e LR)', 
+     'paper_arxiv_id': '1906.09756',
+     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/cascade_mask_rcnn_r50_fpn_20e_20181123-6e0c9713.pth',
+     'weights_name': 'cascade_mask_rcnn_r50_fpn_20e_20181123-6e0c9713.pth',
+     'config': './configs/cascade_mask_rcnn_r50_fpn_1x.py',
+    'paper_results': None}
+)
+
+model_configs.append(
+    {'model_name': 'Cascade Mask R-CNN (ResNet-101-FPN, 1x LR)', 
+     'paper_arxiv_id': '1906.09756',
+     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/cascade_mask_rcnn_r101_fpn_1x_20181129-64f00602.pth',
+     'weights_name': 'cascade_mask_rcnn_r101_fpn_1x_20181129-64f00602.pth',
+     'config': './configs/cascade_mask_rcnn_r101_fpn_1x.py',
+    'paper_results': None}
+)
+
+model_configs.append(
+    {'model_name': 'Cascade Mask R-CNN (ResNet-101-FPN, 20e LR)', 
+     'paper_arxiv_id': '1906.09756',
+     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/cascade_mask_rcnn_r101_fpn_20e_20181129-cb85151d.pth',
+     'weights_name': 'cascade_mask_rcnn_r101_fpn_20e_20181129-cb85151d.pth',
+     'config': './configs/cascade_mask_rcnn_r101_fpn_1x.py',
+    'paper_results': {'box AP': 0.433, 'AP50': 0.617, 'AP75': 0.472, 'APS': 0.242, 'APM': 0.463, 'APL': 0.582}}
+)
+
+model_configs.append(
+    {'model_name': 'Cascade Mask R-CNN (ResNeXt-101 32x4d-FPN, 1x LR)', 
+     'paper_arxiv_id': '1906.09756',
+     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/cascade_mask_rcnn_x101_32x4d_fpn_1x_20181218-1d944c89.pth',
+     'weights_name': 'cascade_mask_rcnn_x101_32x4d_fpn_1x_20181218-1d944c89.pth',
+     'config': './configs/cascade_mask_rcnn_x101_32x4d_fpn_1x.py',
+    'paper_results': None}
+)
+
+model_configs.append(
+    {'model_name': 'Cascade Mask R-CNN (ResNeXt-101 32x4d-FPN, 20e LR)', 
+     'paper_arxiv_id': '1906.09756',
+     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/cascade_mask_rcnn_x101_32x4d_fpn_20e_20181218-761a3473.pth',
+     'weights_name': 'cascade_mask_rcnn_x101_32x4d_fpn_20e_20181218-761a3473.pth',
+     'config': './configs/cascade_mask_rcnn_x101_32x4d_fpn_1x.py',
+    'paper_results': None}
+)
+
+model_configs.append(
+    {'model_name': 'Cascade Mask R-CNN (ResNeXt-101 64x4d-FPN, 1x LR)', 
+     'paper_arxiv_id': '1906.09756',
+     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/cascade_mask_rcnn_x101_64x4d_fpn_1x_20190501-827e0a70.pth',
+     'weights_name': 'cascade_mask_rcnn_x101_64x4d_fpn_1x_20190501-827e0a70.pth',
+     'config': './configs/cascade_mask_rcnn_x101_64x4d_fpn_1x.py',
+    'paper_results': None}
+)
+
+model_configs.append(
+    {'model_name': 'Cascade Mask R-CNN (ResNeXt-101 64x4d-FPN, 20e LR)', 
+     'paper_arxiv_id': '1906.09756',
+     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/cascade_mask_rcnn_x101_64x4d_fpn_20e_20181218-630773a7.pth',
+     'weights_name': 'htc_dconv_c3-c5_mstrain_400_1400_x101_64x4d_fpn_20e_20190408-0e50669c.pth',
+     'config': './configs/cascade_mask_rcnn_x101_64x4d_fpn_1x.py',
+    'paper_results': {'box AP': 0.458, 'AP50': 0.641, 'AP75': 0.503, 'APS': 0.272, 'APM': 0.495, 'APL': 0.601}}
 )
 
 import torch.distributed as dist
