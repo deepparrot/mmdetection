@@ -347,15 +347,62 @@ model_configs.append(
     'paper_results': None}
 )
 
-"""
+## Hybrid Task Cascade (HTC)
+
 model_configs.append(
-    {'model_name': 'HTC (HRNetV2p-W48)', 
-     'paper_arxiv_id': '1908.07919',
-     'weights_url': 'https://open-mmlab.s3.ap-northeast-2.amazonaws.com/mmdetection/models/hrnet/htc_hrnetv2p_w48_20e_20190810-f6d2c3fd.pth',
-     'weights_name': 'htc_hrnetv2p_w48_20e_20190810-f6d2c3fd.pth',
-     'config': './configs/gcnet/r50/mask_rcnn_r50_fpn_1x.py'}
+    {'model_name': 'HTC (ResNet-50-FPN, 1x LR)', 
+     'paper_arxiv_id': '1901.07518',
+     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/htc/htc_r50_fpn_1x_20190408-878c1712.pth',
+     'weights_name': 'htc_r50_fpn_1x_20190408-878c1712.pth',
+     'config': './configs/htc/htc_r50_fpn_1x.py',
+    'paper_results': None}
 )
-"""
+
+model_configs.append(
+    {'model_name': 'HTC (ResNet-50-FPN, 20e LR)', 
+     'paper_arxiv_id': '1901.07518',
+     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/htc/htc_r50_fpn_20e_20190408-c03b7015.pth',
+     'weights_name': 'htc_r50_fpn_20e_20190408-c03b7015.pth',
+     'config': './configs/htc/htc_r50_fpn_20e.py',
+    'paper_results': None}
+)
+
+model_configs.append(
+    {'model_name': 'HTC (ResNet-101-FPN)', 
+     'paper_arxiv_id': '1901.07518',
+     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/htc/htc_r101_fpn_20e_20190408-a2e586db.pth',
+     'weights_name': 'htc_r101_fpn_20e_20190408-a2e586db.pth',
+     'config': './configs/htc/htc_r101_fpn_20e.py',
+    'paper_results': None}
+)
+
+model_configs.append(
+    {'model_name': 'HTC (ResNeXt-101 32x4d-FPN)', 
+     'paper_arxiv_id': '1901.07518',
+     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/htc/htc_x101_32x4d_fpn_20e_20190408-9eae4d0b.pth',
+     'weights_name': 'htc_x101_32x4d_fpn_20e_20190408-9eae4d0b.pth',
+     'config': './configs/htc/htc_x101_32x4d_fpn_20e_16gpu.py',
+    'paper_results': None}
+)
+
+model_configs.append(
+    {'model_name': 'HTC (ResNeXt-101 64x4d-FPN)', 
+     'paper_arxiv_id': '1901.07518',
+     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/htc/htc_x101_64x4d_fpn_20e_20190408-497f2561.pth',
+     'weights_name': 'htc_x101_64x4d_fpn_20e_20190408-497f2561.pth',
+     'config': './configs/htc/htc_x101_64x4d_fpn_20e_16gpu.py',
+    'paper_results': None}
+)
+
+model_configs.append(
+    {'model_name': 'HTC (ResNeXt-101 64x4d-FPN, DCN, multi-scale)', 
+     'paper_arxiv_id': '1901.07518',
+     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/htc/htc_dconv_c3-c5_mstrain_400_1400_x101_64x4d_fpn_20e_20190408-0e50669c.pth',
+     'weights_name': 'htc_dconv_c3-c5_mstrain_400_1400_x101_64x4d_fpn_20e_20190408-0e50669c.pth',
+     'config': './configs/htc/htc_dconv_c3-c5_mstrain_400_1400_x101_64x4d_fpn_20e.py',
+    'paper_results': None}
+)
+
 import torch.distributed as dist
 dist.init_process_group('gloo', init_method='file:///tmp/somefile', rank=0, world_size=1)
     
