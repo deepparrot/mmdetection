@@ -333,7 +333,8 @@ model_configs.append(
      'paper_arxiv_id': '1512.02325',
      'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/ssd300_coco_vgg16_caffe_120e_20181221-84d7110b.pth',
      'weights_name': 'ssd300_coco_vgg16_caffe_120e_20181221-84d7110b.pth',
-     'config': './configs/ssd300_coco.py'}
+     'config': './configs/ssd300_coco.py',
+    'paper_results': None}
 )
 
 model_configs.append(
@@ -341,7 +342,8 @@ model_configs.append(
      'paper_arxiv_id': '1512.02325',
      'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/ssd512_coco_vgg16_caffe_120e_20181221-d48b0be8.pth',
      'weights_name': 'ssd512_coco_vgg16_caffe_120e_20181221-d48b0be8.pth',
-     'config': './configs/ssd500_coco.py'}
+     'config': './configs/ssd500_coco.py',
+    'paper_results': None}
 )
 
 """
