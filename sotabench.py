@@ -319,11 +319,10 @@ def evaluate_model(model_name, paper_arxiv_id, weights_url, weights_name, paper_
                         result_file = args.out + '.{}'.format(name)
                         result_files = results2json(dataset, outputs_,
                                                     result_file)
-
-      anns = json.load(open(result_files['bbox']))
-      evaluator.detections = []
-      evaluator.add(anns)
-      evaluator.save()
+    anns = json.load(open(result_files['bbox']))
+    evaluator.detections = []
+    evaluator.add(anns)
+    evaluator.save()
 
 model_configs = []
 
