@@ -4,6 +4,7 @@ import os.path as osp
 import shutil
 import tempfile
 import urllib.request
+import json
 
 from sotabencheval.object_detection import COCOEvaluator
 
