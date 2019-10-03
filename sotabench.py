@@ -312,6 +312,7 @@ def evaluate_model(model_name, paper_arxiv_id, weights_url, weights_name, paper_
                 result_file = out
             else:
                 if not isinstance(outputs[0], dict):
+                    from mmdet.core import results2json
                     result_files = results2json(dataset, outputs, out)
                 else:
                     for name in outputs[0]:
