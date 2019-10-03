@@ -10,9 +10,10 @@ cd apex
 pip install -v --no-cache-dir ./
 
 cd ..
-
+ls
 echo "Building roi align op..."
 cd mmdet/ops/roi_align
+ls
 if [ -d "build" ]; then
     rm -r build
 fi
