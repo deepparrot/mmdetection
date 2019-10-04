@@ -12,6 +12,7 @@ import copy
 import mmcv
 import torch
 import torch.distributed as dist
+torch.manual_seed(0)
 from mmcv.parallel import MMDataParallel, MMDistributedDataParallel
 from mmcv.runner import get_dist_info, load_checkpoint
 
@@ -24,6 +25,11 @@ from mmdet.models import build_detector
 from torchbench.utils import extract_archive
 image_dir_zip = osp.join('./.data/vision/coco', 'val2017.zip')
 extract_archive(from_path=image_dir_zip, to_path='./.data/vision/coco')
+
+from pathlib import Path
+
+if not os.path.isdir(Path.home() / '.cache/torch'):
+    os.mkdir(Path.home() / '.cache/torch')
 
 def xyxy2xywh(bbox):
     _bbox = bbox.tolist()
@@ -227,7 +233,8 @@ def collect_results(result_part, size, tmpdir=None):
         return ordered_results
 
 def evaluate_model(model_name, paper_arxiv_id, weights_url, weights_name, paper_results, config):
-
+    print('---')
+    print('Now Evaluating %s' % model_name)
     evaluator = COCOEvaluator(
     root='./.data/vision/coco',
     model_name=model_name,
@@ -275,7 +282,7 @@ def evaluate_model(model_name, paper_arxiv_id, weights_url, weights_name, paper_
 
     local_checkpoint, _ = urllib.request.urlretrieve(
         weights_url,
-        weights_name)
+        Path.home() / '.cache/torch/%s' % weights_name)
 
     # '/home/ubuntu/GCNet/mask_rcnn_r50_fpn_1x_20181010-069fa190.pth'
     checkpoint = load_checkpoint(model, local_checkpoint, map_location='cpu')
@@ -542,6 +549,241 @@ model_configs.append(
      'weights_name': 'cascade_rcnn_x101_64x4d_fpn_2x_20181218-5add321e.pth',
      'config': './configs/cascade_rcnn_x101_64x4d_fpn_1x.py'}
 )
+
+## RetinaNet
+
+model_configs.append(
+    {'model_name': 'RetinaNet (ResNet-50-FPN+)', 
+     'paper_arxiv_id': '1708.02002',
+     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/retinanet_r50_fpn_1x_20181125-7b0c2548.pth',
+     'weights_name': 'retinanet_r50_fpn_1x_20181125-7b0c2548.pth',
+     'config': './configs/retinanet_r50_fpn_1x.py'}
+)
+
+model_configs.append(
+    {'model_name': 'RetinaNet (ResNet-50-FPN, 20e LR)', 
+     'paper_arxiv_id': '1708.02002',
+     'weights_url': 'https://open-mmlab.s3.ap-northeast-2.amazonaws.com/mmdetection/models/retinanet_r50_fpn_2x_20190616-75574209.pth',
+     'weights_name': 'retinanet_r50_fpn_2x_20190616-75574209.pth',
+     'config': './configs/retinanet_r50_fpn_1x.py'}
+)
+
+model_configs.append(
+    {'model_name': 'RetinaNet (ResNet-101-FPN, 1x LR)', 
+     'paper_arxiv_id': '1708.02002',
+     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/retinanet_r101_fpn_1x_20181129-f016f384.pth',
+     'weights_name': 'retinanet_r101_fpn_1x_20181129-f016f384.pth',
+     'config': './configs/retinanet_r101_fpn_1x.py'}
+)
+
+model_configs.append(
+    {'model_name': 'RetinaNet (ResNet-101-FPN+, cascade)', 
+     'paper_arxiv_id': '1708.02002',
+     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/retinanet_r101_fpn_2x_20181129-72c14526.pth',
+     'weights_name': 'retinanet_r101_fpn_2x_20181129-72c14526.pth',
+     'config': './configs/retinanet_r101_fpn_1x.py'}
+)
+
+model_configs.append(
+    {'model_name': 'RetinaNet (ResNeXt-101 32x4d-FPN, 1x LR)', 
+     'paper_arxiv_id': '1708.02002',
+     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/retinanet_x101_32x4d_fpn_1x_20190501-967812ba.pth',
+     'weights_name': 'retinanet_x101_32x4d_fpn_1x_20190501-967812ba.pth',
+     'config': './configs/retinanet_x101_32x4d_fpn_1x.py'}
+)
+
+model_configs.append(
+    {'model_name': 'RetinaNet (ResNeXt-101 32x4d-FPN, 20e LR)', 
+     'paper_arxiv_id': '1708.02002',
+     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/retinanet_x101_32x4d_fpn_2x_20181218-8596452d.pth',
+     'weights_name': 'retinanet_x101_32x4d_fpn_2x_20181218-8596452d.pth',
+     'config': './configs/retinanet_x101_32x4d_fpn_1x.py'}
+)
+
+model_configs.append(
+    {'model_name': 'RetinaNet (ResNeXt-101 64x4d-FPN, 1x LR)', 
+     'paper_arxiv_id': '1708.02002',
+     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/retinanet_x101_64x4d_fpn_1x_20181218-a0a22662.pth',
+     'weights_name': 'retinanet_x101_64x4d_fpn_1x_20181218-a0a22662.pth',
+     'config': './configs/retinanet_x101_64x4d_fpn_1x.py'}
+)
+
+model_configs.append(
+    {'model_name': 'RetinaNet (ResNeXt-101 64x4d-FPN, 20e LR)', 
+     'paper_arxiv_id': '1708.02002',
+     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/retinanet_x101_64x4d_fpn_2x_20181218-5e88d045.pth',
+     'weights_name': 'retinanet_x101_64x4d_fpn_2x_20181218-5e88d045.pth',
+     'config': './configs/retinanet_x101_64x4d_fpn_1x.py'}
+)
+
+## Faster R-CNN
+
+model_configs.append(
+    {'model_name': 'Faster R-CNN (ResNet-50-FPN, 1x LR)', 
+     'paper_arxiv_id': '1506.01497',
+     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/faster_rcnn_r50_fpn_1x_20181010-3d1b3351.pth',
+     'weights_name': 'faster_rcnn_r50_fpn_1x_20181010-3d1b3351.pth',
+     'config': './configs/faster_rcnn_r50_fpn_1x.py'}
+)
+
+model_configs.append(
+    {'model_name': 'Faster R-CNN (ResNet-50-FPN, 2x LR)', 
+     'paper_arxiv_id': '1506.01497',
+     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/faster_rcnn_r50_fpn_2x_20181010-443129e1.pth',
+     'weights_name': 'faster_rcnn_r50_fpn_2x_20181010-443129e1.pth',
+     'config': './configs/faster_rcnn_r50_fpn_1x.py'}
+)
+
+model_configs.append(
+    {'model_name': 'Faster R-CNN (ResNet-101-FPN, 1x LR)', 
+     'paper_arxiv_id': '1506.01497',
+     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/faster_rcnn_r101_fpn_1x_20181129-d1468807.pth',
+     'weights_name': 'faster_rcnn_r101_fpn_1x_20181129-d1468807.pth',
+     'config': './configs/faster_rcnn_r101_fpn_1x.py'}
+)
+
+model_configs.append(
+    {'model_name': 'Faster R-CNN (ResNet-101-FPN, 2x LR)', 
+     'paper_arxiv_id': '1506.01497',
+     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/faster_rcnn_r101_fpn_2x_20181129-73e7ade7.pth',
+     'weights_name': 'faster_rcnn_r101_fpn_2x_20181129-73e7ade7.pth',
+     'config': './configs/faster_rcnn_r101_fpn_1x.py'}
+)
+
+model_configs.append(
+    {'model_name': 'Faster R-CNN (ResNeXt-101 32x4d-FPN, 1x LR)', 
+     'paper_arxiv_id': '1506.01497',
+     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/faster_rcnn_x101_32x4d_fpn_1x_20181218-ad81c133.pth',
+     'weights_name': 'faster_rcnn_x101_32x4d_fpn_1x_20181218-ad81c133.pth',
+     'config': './configs/faster_rcnn_x101_32x4d_fpn_1x.py'}
+)
+
+model_configs.append(
+    {'model_name': 'Faster R-CNN (ResNeXt-101 32x4d-FPN, 2x LR)', 
+     'paper_arxiv_id': '1506.01497',
+     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/faster_rcnn_x101_32x4d_fpn_2x_20181218-0ed58946.pth',
+     'weights_name': 'faster_rcnn_x101_32x4d_fpn_2x_20181218-0ed58946.pth',
+     'config': './configs/faster_rcnn_x101_32x4d_fpn_1x.py'}
+)
+
+model_configs.append(
+    {'model_name': 'Faster R-CNN (ResNeXt-101 64x4d-FPN, 1x LR)', 
+     'paper_arxiv_id': '1506.01497',
+     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/faster_rcnn_x101_64x4d_fpn_1x_20181218-c9c69c8f.pth',
+     'weights_name': 'faster_rcnn_x101_64x4d_fpn_1x_20181218-c9c69c8f.pth',
+     'config': './configs/faster_rcnn_x101_64x4d_fpn_1x.py'}
+)
+
+model_configs.append(
+    {'model_name': 'Faster R-CNN (ResNeXt-101 64x4d-FPN, 2x LR)', 
+     'paper_arxiv_id': '1506.01497',
+     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/faster_rcnn_x101_64x4d_fpn_2x_20181218-fe94f9b8.pth',
+     'weights_name': 'faster_rcnn_x101_64x4d_fpn_2x_20181218-fe94f9b8.pth',
+     'config': './configs/faster_rcnn_x101_64x4d_fpn_1x.py'}
+)
+
+## HRNet
+
+model_configs.append(
+    {'model_name': 'Faster R-CNN (HRNetV2p-W18, 1x LR)', 
+     'paper_arxiv_id': '1904.04514',
+     'weights_url': 'https://open-mmlab.s3.ap-northeast-2.amazonaws.com/mmdetection/models/hrnet/faster_rcnn_hrnetv2p_w18_1x_20190522-e368c387.pth',
+     'weights_name': 'faster_rcnn_hrnetv2p_w18_1x_20190522-e368c387.pth',
+     'config': './configs/hrnet/faster_rcnn_hrnetv2p_w18_1x.py',
+     'paper_results': {'box AP': 0.362, 'AP50': 0.573, 'AP75': 0.393, 'APS': 0.207, 'APM': 0.39, 'APL': 0.468}}
+)
+
+model_configs.append(
+    {'model_name': 'Faster R-CNN (HRNetV2p-W18)', 
+     'paper_arxiv_id': '1904.04514',
+     'weights_url': 'https://open-mmlab.s3.ap-northeast-2.amazonaws.com/mmdetection/models/hrnet/faster_rcnn_hrnetv2p_w18_2x_20190810-9c8615d5.pth',
+     'weights_name': 'faster_rcnn_hrnetv2p_w18_2x_20190810-9c8615d5.pth',
+     'config': './configs/hrnet/faster_rcnn_hrnetv2p_w18_1x.py'}
+)
+
+model_configs.append(
+    {'model_name': 'Faster R-CNN (HRNetV2p-W32, 1x LR)', 
+     'paper_arxiv_id': '1904.04514',
+     'weights_url': 'https://open-mmlab.s3.ap-northeast-2.amazonaws.com/mmdetection/models/hrnet/faster_rcnn_hrnetv2p_w32_1x_20190522-d22f1fef.pth',
+     'weights_name': 'faster_rcnn_hrnetv2p_w32_1x_20190522-d22f1fef.pth',
+     'config': './configs/hrnet/faster_rcnn_hrnetv2p_w32_1x.py',
+     'paper_results': {'box AP': 0.396, 'AP50': 0.61, 'AP75': 0.433, 'APS': 0.237, 'APM': 0.425, 'APL': 0.505}} 
+)
+
+model_configs.append(
+    {'model_name': 'Faster R-CNN (HRNetV2p-W32)', 
+     'paper_arxiv_id': '1904.04514',
+     'weights_url': 'https://open-mmlab.s3.ap-northeast-2.amazonaws.com/mmdetection/models/hrnet/faster_rcnn_hrnetv2p_w32_2x_20190810-24e8912a.pth',
+     'weights_name': 'faster_rcnn_hrnetv2p_w32_2x_20190810-24e8912a.pth',
+     'config': './configs/hrnet/faster_rcnn_hrnetv2p_w32_1x.py'} 
+)
+
+#maskrcnn
+
+model_configs.append(
+    {'model_name': 'Mask R-CNN (HRNetV2p-W18, 1x LR)', 
+     'paper_arxiv_id': '1904.04514',
+     'weights_url': 'https://open-mmlab.s3.ap-northeast-2.amazonaws.com/mmdetection/models/hrnet/mask_rcnn_hrnetv2p_w18_1x_20190522-c8ad459f.pth',
+     'weights_name': 'mask_rcnn_hrnetv2p_w18_1x_20190522-c8ad459f.pth',
+     'config': './configs/hrnet/mask_rcnn_hrnetv2p_w18_1x.py',
+     'paper_results': {'box AP': 0.371, 'APS': 0.219, 'APM': 0.395, 'APL': 0.479}}
+)
+
+model_configs.append(
+    {'model_name': 'Mask R-CNN (HRNetV2p-W18)', 
+     'paper_arxiv_id': '1904.04514',
+     'weights_url': 'https://open-mmlab.s3.ap-northeast-2.amazonaws.com/mmdetection/models/hrnet/mask_rcnn_hrnetv2p_w18_2x_20190810-1e4747eb.pth',
+     'weights_name': 'mask_rcnn_hrnetv2p_w18_2x_20190810-1e4747eb.pth',
+     'config': './configs/hrnet/mask_rcnn_hrnetv2p_w18_1x.py'}
+)
+
+model_configs.append(
+    {'model_name': 'Mask R-CNN (HRNetV2p-W32, 1x LR)', 
+     'paper_arxiv_id': '1904.04514',
+     'weights_url': 'https://open-mmlab.s3.ap-northeast-2.amazonaws.com/mmdetection/models/hrnet/mask_rcnn_hrnetv2p_w32_1x_20190522-374aaa00.pth',
+     'weights_name': 'mask_rcnn_hrnetv2p_w32_1x_20190522-374aaa00.pth',
+     'config': './configs/hrnet/mask_rcnn_hrnetv2p_w32_1x.py',
+     'paper_results': {'box AP': 0.409, 'APS': 0.245, 'APM': 0.439, 'APL': 0.522}}
+) 
+
+model_configs.append(
+    {'model_name': 'Mask R-CNN (HRNetV2p-W32)', 
+     'paper_arxiv_id': '1904.04514',
+     'weights_url': 'https://open-mmlab.s3.ap-northeast-2.amazonaws.com/mmdetection/models/hrnet/mask_rcnn_hrnetv2p_w32_2x_20190810-773eca75.pth',
+     'weights_name': 'mask_rcnn_hrnetv2p_w32_2x_20190810-773eca75.pth',
+     'config': './configs/hrnet/mask_rcnn_hrnetv2p_w32_1x.py'}
+) 
+
+#cascadercnn
+
+model_configs.append(
+    {'model_name': 'Cascade R-CNN (HRNetV2p-W32)', 
+     'paper_arxiv_id': '1904.04514',
+     'weights_url': 'https://open-mmlab.s3.ap-northeast-2.amazonaws.com/mmdetection/models/hrnet/cascade_rcnn_hrnetv2p_w32_20e_20190522-55bec4ee.pth',
+     'weights_name': 'cascade_rcnn_hrnetv2p_w32_20e_20190522-55bec4ee.pth',
+     'config': './configs/hrnet/cascade_rcnn_hrnetv2p_w32_20e.py'}
+)
+
+#cascademaskkrcnn
+
+model_configs.append( 
+    {'model_name': 'Mask R-CNN (HRNetV2p-W32, cascade)', 
+     'paper_arxiv_id': '1904.04514',
+     'weights_url': 'https://open-mmlab.s3.ap-northeast-2.amazonaws.com/mmdetection/models/hrnet/cascade_mask_rcnn_hrnetv2p_w32_20e_20190810-76f61cd0.pth',
+     'weights_name': 'cascade_mask_rcnn_hrnetv2p_w32_20e_20190810-76f61cd0.pth',
+     'config': './configs/hrnet/cascade_mask_rcnn_hrnetv2p_w32_20e.py'}
+)
+
+#htc
+
+model_configs.append(
+    {'model_name': 'HTC (HRNetV2p-W32)', 
+     'paper_arxiv_id': '1904.04514',
+     'weights_url': 'https://open-mmlab.s3.ap-northeast-2.amazonaws.com/mmdetection/models/hrnet/htc_hrnetv2p_w32_20e_20190810-82f9ef5a.pth',
+     'weights_name': 'htc_hrnetv2p_w32_20e_20190810-82f9ef5a.pth',
+     'config': './configs/hrnet/htc_hrnetv2p_w32_20e.py'}
+)
+
 
 import torch.distributed as dist
 dist.init_process_group('gloo', init_method='file:///tmp/somefile', rank=0, world_size=1)
