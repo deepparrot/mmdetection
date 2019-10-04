@@ -279,11 +279,13 @@ def evaluate_model(model_name, paper_arxiv_id, weights_url, weights_name, paper_
     fp16_cfg = cfg.get('fp16', None)
     if fp16_cfg is not None:
         wrap_fp16_model(model)
-
+        
     local_checkpoint, _ = urllib.request.urlretrieve(
         weights_url,
-        Path.home() / '.cache/torch/%s' % weights_name)
+         '%s/.cache/torch/%s' % (str(Path.home()), weights_name))
 
+    print(local_checkpoint)
+    
     # '/home/ubuntu/GCNet/mask_rcnn_r50_fpn_1x_20181010-069fa190.pth'
     checkpoint = load_checkpoint(model, local_checkpoint, map_location='cpu')
 
