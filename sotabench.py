@@ -477,6 +477,72 @@ model_configs.append(
     'paper_results': {'box AP': 0.458, 'AP50': 0.641, 'AP75': 0.503, 'APS': 0.272, 'APM': 0.495, 'APL': 0.601}}
 )
 
+## Cascade R-CNN
+
+model_configs.append(
+    {'model_name': 'Cascade R-CNN (ResNet-50-FPN+)', 
+     'paper_arxiv_id': '1906.09756',
+     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/cascade_rcnn_r50_fpn_1x_20190501-3b6211ab.pth',
+     'weights_name': 'cascade_rcnn_r50_fpn_1x_20190501-3b6211ab.pth',
+     'config': './configs/cascade_rcnn_r50_fpn_1x.py'}
+)
+
+model_configs.append(
+    {'model_name': 'Cascade R-CNN (ResNet-50-FPN, 20e LR)', 
+     'paper_arxiv_id': '1906.09756',
+     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/cascade_rcnn_r50_fpn_20e_20181123-db483a09.pth',
+     'weights_name': 'cascade_rcnn_r50_fpn_20e_20181123-db483a09.pth',
+     'config': './configs/cascade_rcnn_r50_fpn_1x.py'}
+)
+
+model_configs.append(
+    {'model_name': 'Cascade R-CNN (ResNet-101-FPN, 1x LR)', 
+     'paper_arxiv_id': '1906.09756',
+     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/cascade_rcnn_r101_fpn_1x_20181129-d64ebac7.pth',
+     'weights_name': 'cascade_rcnn_r101_fpn_1x_20181129-d64ebac7.pth',
+     'config': './configs/cascade_rcnn_r101_fpn_1x.py'}
+)
+
+model_configs.append(
+    {'model_name': 'Cascade R-CNN (ResNet-101-FPN+, cascade)', 
+     'paper_arxiv_id': '1906.09756',
+     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/cascade_rcnn_r101_fpn_20e_20181129-b46dcede.pth',
+     'weights_name': 'cascade_rcnn_r101_fpn_20e_20181129-b46dcede.pth',
+     'config': './configs/cascade_rcnn_r101_fpn_1x.py'}
+)
+
+model_configs.append(
+    {'model_name': 'Cascade R-CNN (ResNeXt-101 32x4d-FPN, 1x LR)', 
+     'paper_arxiv_id': '1906.09756',
+     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/cascade_rcnn_x101_32x4d_fpn_1x_20190501-af628be5.pth',
+     'weights_name': 'cascade_rcnn_x101_32x4d_fpn_1x_20190501-af628be5.pth',
+     'config': './configs/cascade_rcnn_x101_32x4d_fpn_1x.py'}
+)
+
+model_configs.append(
+    {'model_name': 'Cascade R-CNN (ResNeXt-101 32x4d-FPN, 20e LR)', 
+     'paper_arxiv_id': '1906.09756',
+     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/cascade_rcnn_x101_32x4d_fpn_2x_20181218-28f73c4c.pth',
+     'weights_name': 'cascade_rcnn_x101_32x4d_fpn_2x_20181218-28f73c4c.pth',
+     'config': './configs/cascade_rcnn_x101_32x4d_fpn_1x.py'}
+)
+
+model_configs.append(
+    {'model_name': 'Cascade R-CNN (ResNeXt-101 64x4d-FPN, 1x LR)', 
+     'paper_arxiv_id': '1906.09756',
+     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/cascade_rcnn_x101_64x4d_fpn_1x_20181218-e2dc376a.pth',
+     'weights_name': 'cascade_rcnn_x101_64x4d_fpn_1x_20181218-e2dc376a.pth',
+     'config': './configs/cascade_rcnn_x101_64x4d_fpn_1x.py'}
+)
+
+model_configs.append(
+    {'model_name': 'Cascade R-CNN (ResNeXt-101 64x4d-FPN, 20e LR)', 
+     'paper_arxiv_id': '1906.09756',
+     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/cascade_rcnn_x101_64x4d_fpn_2x_20181218-5add321e.pth',
+     'weights_name': 'cascade_rcnn_x101_64x4d_fpn_2x_20181218-5add321e.pth',
+     'config': './configs/cascade_rcnn_x101_64x4d_fpn_1x.py'}
+)
+
 import torch.distributed as dist
 dist.init_process_group('gloo', init_method='file:///tmp/somefile', rank=0, world_size=1)
     
