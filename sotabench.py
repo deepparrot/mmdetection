@@ -791,6 +791,9 @@ import torch.distributed as dist
 dist.init_process_group('gloo', init_method='file:///tmp/somefile', rank=0, world_size=1)
     
 for model_config in model_configs:
+    if 'paper_results' not in model_config:
+        model_config['paper_results'] = None
+    
     evaluate_model(model_name=model_config['model_name'], 
                    paper_arxiv_id=model_config['paper_arxiv_id'],
                    weights_url=model_config['weights_url'],
