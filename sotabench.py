@@ -430,7 +430,7 @@ model_configs.append(
      'paper_arxiv_id': '1903.10520',
      'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/ws/faster_rcnn_r50_fpn_gn_ws_1x_20190418-935d00b6.pth',
      'weights_name': 'faster_rcnn_r50_fpn_gn_ws_1x_20190418-935d00b6.pth',
-     'config': './configs/gn%2Bws/faster_rcnn_r50_fpn_gn_ws_1x.py'}
+     'config': './configs/gn+ws/faster_rcnn_r50_fpn_gn_ws_1x.py'}
 )
 
 model_configs.append(
@@ -446,7 +446,7 @@ model_configs.append(
      'paper_arxiv_id': '1903.10520',
      'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/ws/mask_rcnn_r50_fpn_gn_ws_20_23_24e_20190425-1d9e499e.pth',
      'weights_name': 'mask_rcnn_r50_fpn_gn_ws_20_23_24e_20190425-1d9e499e.pth',
-     'config': './configs/gn%2Bws/mask_rcnn_r50_fpn_gn_ws_20_23_24e.py'}
+     'config': './configs/gn+ws/mask_rcnn_r50_fpn_gn_ws_20_23_24e.py'}
 )
 
 model_configs.append(
@@ -454,7 +454,7 @@ model_configs.append(
      'paper_arxiv_id': '1903.10520',
      'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/ws/mask_rcnn_x101_32x4d_fpn_gn_ws_20_23_24e_20190425-1ff3e5b2.pth',
      'weights_name': 'mask_rcnn_x101_32x4d_fpn_gn_ws_20_23_24e_20190425-1ff3e5b2.pth',
-     'config': './configs/gn%2Bws/mask_rcnn_x101_32x4d_fpn_gn_ws_2x.py'}
+     'config': './configs/gn+ws/mask_rcnn_x101_32x4d_fpn_gn_ws_2x.py'}
 )
 
 
