@@ -350,14 +350,6 @@ model_configs.append(
 )
 
 model_configs.append(
-    {'model_name': 'Libra R-CNN (ResNet-50 FPN)', 
-     'paper_arxiv_id': '1904.02701',
-     'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/libra_rcnn/libra_fast_rcnn_r50_fpn_1x_20190525-a43f88b5.pth',
-     'weights_name': 'libra_fast_rcnn_r50_fpn_1x_20190525-a43f88b5.pth',
-     'config': './configs/libra_rcnn/libra_fast_rcnn_r50_fpn_1x.py'}
-)
-
-model_configs.append(
     {'model_name': 'Libra R-CNN (Faster R-CNN, ResNet-101-FPN)', 
      'paper_arxiv_id': '1904.02701',
      'weights_url': 'https://s3.ap-northeast-2.amazonaws.com/open-mmlab/mmdetection/models/libra_rcnn/libra_faster_rcnn_r101_fpn_1x_20190525-94e94051.pth',
